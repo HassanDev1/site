@@ -1,9 +1,9 @@
 "use client";
 
-import { Avatar, Box, Flex, keyframes } from "@chakra-ui/react";
+import { Avatar, Box, keyframes } from "@chakra-ui/react";
 
 export default function AvatarWithRipple() {
-  const size = "60%";
+  const size = "96px";
   const color = "teal";
 
   const pulseRing = keyframes`
@@ -20,41 +20,35 @@ export default function AvatarWithRipple() {
 	`;
 
   return (
-    <Flex
-      justifyContent='center'
-      alignItems='center'
-      h='400px'
-      w='full'
-      overflow='hidden'
+    // <Flex
+    //   justifyContent='center'
+    //   alignItems='center'
+    //   h='216px'
+    //   w='full'
+    //   overflow='hidden'
+    // >
+    /* Ideally, only the box should be used. The <Flex /> is used to style the preview. */
+    <Box
+      as='div'
+      position='relative'
+      w={size}
+      h={size}
+      _before={{
+        content: "''",
+        position: "relative",
+        display: "block",
+        width: "300%",
+        height: "300%",
+        boxSizing: "border-box",
+        marginLeft: "-100%",
+        marginTop: "-100%",
+        borderRadius: "50%",
+        bgColor: color,
+        animation: `2.25s ${pulseRing} cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite`,
+      }}
     >
-      {/* Ideally, only the box should be used. The <Flex /> is used to style the preview. */}
-
-      <Box
-        as='div'
-        position='relative'
-        w={size}
-        h={size}
-        _before={{
-          content: "''",
-          position: "relative",
-          display: "block",
-          width: "300%",
-          height: "300%",
-          boxSizing: "border-box",
-          marginLeft: "-100%",
-          marginTop: "-100%",
-          borderRadius: "50%",
-          bgColor: color,
-          animation: `2.25s ${pulseRing} cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite`,
-        }}
-      >
-        <Avatar
-          src='images/portf.png'
-          size='full'
-          position='absolute'
-          top={0}
-        />
-      </Box>
-    </Flex>
+      <Avatar src='images/portf.png' size='full' position='absolute' top={0} />
+    </Box>
+    // </Flex>
   );
 }

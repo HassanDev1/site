@@ -14,6 +14,7 @@ import {
   MenuDivider,
   useDisclosure,
   Stack,
+  Avatar,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
@@ -53,7 +54,11 @@ export default function NavBar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Avatar
+              src='./logo.jpg'
+              visibility={{ base: "hidden", md: "visible" }}
+            />
+
             <HStack
               as={"nav"}
               spacing={4}
